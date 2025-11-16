@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+      <!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
@@ -23,4 +23,20 @@
     let question = { word: "남성", meaning: "man / male" };
 
     // Display question
-    document.getElementById(
+    document.getElementById("quiz").innerHTML =
+      `<div class="question">What is the meaning of <b>${question.word}</b>?</div>
+       <input id="answer" type="text" placeholder="Your answer">`;
+
+    // Check answer
+    function checkAnswer() {
+      let user = document.getElementById("answer").value.toLowerCase().trim();
+      if (user.includes("man") || user.includes("male")) {
+        document.getElementById("result").innerText = "Correct!";
+      } else {
+        document.getElementById("result").innerText = "Wrong! The answer is: " + question.meaning;
+      }
+    }
+  </script>
+</body>
+</html>
+
