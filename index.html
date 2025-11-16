@@ -51,5 +51,24 @@
       q.options.forEach(option => {
         html += `<button class="option" onclick="checkAnswer('${option}')">${option}</button>`;
       });
+       html += `<button class="option" onclick="checkAnswer('${option}')">${option}</button>`;
+      });
       document.getElementById("quiz").innerHTML = html;
-      document
+      document.getElementById("result").innerText = "";
+    }
+
+    function checkAnswer(selected) {
+      let q = questions[currentIndex];
+      if (selected === q.correct) {
+        document.getElementById("result").innerText = "Correct!";
+      } else {
+        document.getElementById("result").innerText = "Wrong! The answer is: " + q.correct;
+      }
+        currentIndex++;
+      setTimeout(showQuestion, 1500);
+    }
+
+    showQuestion();
+  </script>
+</body>
+</html>
