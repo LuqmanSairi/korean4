@@ -51,8 +51,6 @@
       q.options.forEach(option => {
         html += `<button class="option" onclick="checkAnswer('${option}')">${option}</button>`;
       });
-       html += `<button class="option" onclick="checkAnswer('${option}')">${option}</button>`;
-      });
       document.getElementById("quiz").innerHTML = html;
       document.getElementById("result").innerText = "";
     }
@@ -64,7 +62,7 @@
       } else {
         document.getElementById("result").innerText = "Wrong! The answer is: " + q.correct;
       }
-        currentIndex++;
+      currentIndex++;
       setTimeout(showQuestion, 1500);
     }
 
