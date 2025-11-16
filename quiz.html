@@ -1,60 +1,11 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <title>Korean Vocab Quiz</title>
-  <style>
-    body { font-family: Arial; padding: 20px; }
-    .question { font-size: 22px; margin-bottom: 10px; }
-    button { display: block; margin: 5px 0; padding: 8px 15px; font-size: 18px; cursor: pointer; }
-    #result { font-weight: bold; margin-top: 15px; }
-  </style>
-</head>
 <body>
-  <h1>Korean Vocabulary Quiz</h1>
-  <div id="quiz"></div>
-  <p id="result"></p>
+<h1>JS Test</h1>
+<div id="test">Hello</div>
 
-  <script>
-    var questions = [
-      { word: "남성", options: ["man", "woman", "student", "child"], correct: "man" },
-      { word: "여성", options: ["boy", "woman", "teacher", "male"], correct: "woman" },
-      { word: "학생", options: ["teacher", "student", "man", "female"], correct: "student" }
-    ];
-
-    var currentIndex = 0;
-
-    function showQuestion() {
-      if (currentIndex >= questions.length) {
-        document.getElementById("quiz").innerHTML = "<h2>Quiz Finished!</h2>";
-        document.getElementById("result").innerText = "";
-        return;
-      }
-
-      var q = questions[currentIndex];
-      var html = "<div class='question'>What is the meaning of <b>" + q.word + "</b>?</div>";
-
-      for (var i = 0; i < q.options.length; i++) {
-        html += "<button onclick='checkAnswer(\"" + q.options[i] + "\")'>" + q.options[i] + "</button>";
-      }
-
-      document.getElementById("quiz").innerHTML = html;
-      document.getElementById("result").innerText = "";
-    }
-
-    function checkAnswer(selected) {
-      var q = questions[currentIndex];
-      if (selected === q.correct) {
-        document.getElementById("result").innerText = "Correct!";
-      } else {
-        document.getElementById("result").innerText = "Wrong! Answer: " + q.correct;
-      }
-      currentIndex++;
-      setTimeout(showQuestion, 1500);
-    }
-
-    showQuestion();
-  </script>
+<script>
+document.getElementById("test").innerText = "JS works!";
+</script>
 </body>
 </html>
-
