@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Korean Vocab Quiz</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    .question { font-size: 22px; margin-bottom: 10px; }
+    input { font-size: 18px; padding: 5px; margin-bottom: 10px; }
+    button { padding: 10px 20px; font-size: 18px; }
+    #result { font-weight: bold; margin-top: 15px; }
+  </style>
+</head>
+<body>
+  <h1>Korean Vocabulary Quiz</h1>
+
+  <div id="quiz"></div>
+  <button onclick="checkAnswer()">Submit</button>
+  <p id="result"></p>
+
+  <script>
+    // Quiz question
+    let question = { word: "남성", meaning: "man / male" };
+
+    // Display question
+    document.getElementById(
