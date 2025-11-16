@@ -26,7 +26,7 @@
     var currentIndex = 0;
     var score = 0;
 
-    // Show question
+    // Show a question
     function showQuestion() {
       if (currentIndex >= questions.length) {
         document.getElementById("quiz").innerHTML = "<h2>Quiz Finished!</h2>";
@@ -36,16 +36,15 @@
 
       var q = questions[currentIndex];
       var html = "<div class='question'>What is the meaning of <b>" + q.word + "</b>?</div>";
-
-      for (var i = 0; i < q.options.length; i++) {
-        html += "<button onclick='checkAnswer(\"" + q.options[i] + "\")'>" + q.options[i] + "</button>";
-      }
+      q.options.forEach(function(opt) {
+        html += "<button onclick='checkAnswer(\"" + opt + "\")'>" + opt + "</button>";
+      });
 
       document.getElementById("quiz").innerHTML = html;
       document.getElementById("result").innerText = "";
     }
 
-    // Check answer
+    // Check the selected answer
     function checkAnswer(selected) {
       var q = questions[currentIndex];
       if (selected === q.correct) {
@@ -59,9 +58,8 @@
       setTimeout(showQuestion, 1500);
     }
 
-    // Start quiz
+    // Start the quiz
     showQuestion();
   </script>
 </body>
 </html>
-
