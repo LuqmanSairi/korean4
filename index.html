@@ -1,10 +1,10 @@
-      <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
   <title>Korean Vocab Quiz</title>
   <style>
-    body { font-family: Arial, sans-serif; padding: 20px; }
+    body { font-family: Arial; padding: 20px; }
     .question { font-size: 22px; margin-bottom: 10px; }
     input { font-size: 18px; padding: 5px; margin-bottom: 10px; }
     button { padding: 10px 20px; font-size: 18px; }
@@ -19,24 +19,53 @@
   <p id="result"></p>
 
   <script>
-    // Quiz question
-    let question = { word: "남성", meaning: "man / male" };
+    // Make sure JS runs after page loads
+    document.addEventListener("DOMContentLoaded", function() {
+      let questions = [
+        { word: "남성", meanings: ["man", "male"] },
+        { word: "여성", meanings: ["woman", "female"] },
+        { word: "학생", meanings: ["student"] }
+      ];
 
-    // Display question
-    document.getElementById("quiz").innerHTML =
-      `<div class="question">What is the meaning of <b>${question.word}</b>?</div>
-       <input id="answer" type="text" placeholder="Your answer">`;
+      let currentIndex = 0;
 
-    // Check answer
-    function checkAnswer() {
-      let user = document.getElementById("answer").value.toLowerCase().trim();
-      if (user.includes("man") || user.includes("male")) {
-        document.getElementById("result").innerText = "Correct!";
-      } else {
-        document.getElementById("result").innerText = "Wrong! The answer is: " + question.meaning;
+      function displayQuestion() {
+        let q = questions[currentIndex];
+        document.getElementById("quiz").innerHTML =
+          `<div class="question">What is the meaning of <b>${q.word}</b>?</div>
+           <input id="answer" type="text" placeholder="Your answer">`;
+        document.getElementById("result").innerText = "";
       }
-    }
+
+      function checkAnswer() {
+        let user = document.getElementById("answer").value.toLowerCase().trim();
+        let q = questions[currentIndex];
+        let correct = q.meanings.some(m => user.includes(m.toLowerCase()));
+
+        if (correct) {
+          document.getElementById("result").innerText = "Correct!";
+        } else {
+          document.getElementById("result").innerText = "Wrong! Answer: " + q.meanings.join(", ");
+        }
+
+        currentIndex++;
+        if (currentIndex < questions.length) {
+          setTimeout(displayQuestion, 1500);
+        } else {
+          setTimeout(() => {
+            document.getElementById("quiz").innerHTML = "<h2>Quiz Finished!</h2>";
+            document.getElementById("result").innerText = "";
+          }, 1500);
+        }
+      }
+
+      // Make the function accessible to the button
+      window.checkAnswer = checkAnswer;
+
+      displayQuestion();
+    });
   </script>
 </body>
 </html>
+
 
