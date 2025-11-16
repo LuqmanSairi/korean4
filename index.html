@@ -18,8 +18,8 @@
   <p id="result"></p>
 
   <script>
-    // Questions with options
-    let questions = [
+    // Questions
+    const questions = [
       {
         word: "남성",
         options: ["man", "woman", "student", "child"],
@@ -46,27 +46,17 @@
         return;
       }
 
-      let q = questions[currentIndex];
+      const q = questions[currentIndex];
       let html = `<div class="question">What is the meaning of <b>${q.word}</b>?</div>`;
       q.options.forEach(option => {
         html += `<button class="option" onclick="checkAnswer('${option}')">${option}</button>`;
       });
+
       document.getElementById("quiz").innerHTML = html;
       document.getElementById("result").innerText = "";
     }
 
     function checkAnswer(selected) {
-      let q = questions[currentIndex];
+      const q = questions[currentIndex];
       if (selected === q.correct) {
-        document.getElementById("result").innerText = "Correct!";
-      } else {
-        document.getElementById("result").innerText = "Wrong! The answer is: " + q.correct;
-      }
-      currentIndex++;
-      setTimeout(showQuestion, 1500);
-    }
-
-    showQuestion();
-  </script>
-</body>
-</html>
+        document.getElementById("result").innerT
