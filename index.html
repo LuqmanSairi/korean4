@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
 <head>
   <meta charset="UTF-8">
@@ -7,38 +6,23 @@
   <style>
     body { font-family: Arial; padding: 20px; }
     .question { font-size: 22px; margin-bottom: 10px; }
-    .option { display: block; margin: 5px 0; padding: 8px 15px; font-size: 18px; cursor: pointer; }
-    .option:hover { background-color: #f0f0f0; }
+    button { display: block; margin: 5px 0; padding: 8px 15px; font-size: 18px; cursor: pointer; }
     #result { font-weight: bold; margin-top: 15px; }
   </style>
 </head>
 <body>
   <h1>Korean Vocabulary Quiz</h1>
-
   <div id="quiz"></div>
   <p id="result"></p>
 
   <script>
-    // Questions
-    const questions = [
-      {
-        word: "남성",
-        options: ["man", "woman", "student", "child"],
-        correct: "man"
-      },
-      {
-        word: "여성",
-        options: ["boy", "woman", "teacher", "male"],
-        correct: "woman"
-      },
-      {
-        word: "학생",
-        options: ["teacher", "student", "man", "female"],
-        correct: "student"
-      }
+    var questions = [
+      { word: "남성", options: ["man", "woman", "student", "child"], correct: "man" },
+      { word: "여성", options: ["boy", "woman", "teacher", "male"], correct: "woman" },
+      { word: "학생", options: ["teacher", "student", "man", "female"], correct: "student" }
     ];
 
-    let currentIndex = 0;
+    var currentIndex = 0;
 
     function showQuestion() {
       if (currentIndex >= questions.length) {
@@ -47,17 +31,29 @@
         return;
       }
 
-      const q = questions[currentIndex];
-      let html = `<div class="question">What is the meaning of <b>${q.word}</b>?</div>`;
-      q.options.forEach(option => {
-        html += `<button class="option" onclick="checkAnswer('${option}')">${option}</button>`;
-      });
+      var q = questions[currentIndex];
+      var html = "<div class='question'>What is the meaning of <b>" + q.word + "</b>?</div>";
+
+      for (var i = 0; i < q.options.length; i++) {
+        html += "<button onclick='checkAnswer(\"" + q.options[i] + "\")'>" + q.options[i] + "</button>";
+      }
 
       document.getElementById("quiz").innerHTML = html;
       document.getElementById("result").innerText = "";
     }
 
     function checkAnswer(selected) {
-      const q = questions[currentIndex];
+      var q = questions[currentIndex];
       if (selected === q.correct) {
-        document.getElementById("result").innerT
+        document.getElementById("result").innerText = "Correct!";
+      } else {
+        document.getElementById("result").innerText = "Wrong! Answer: " + q.correct;
+      }
+      currentIndex++;
+      setTimeout(showQuestion, 1500);
+    }
+
+    showQuestion();
+  </script>
+</body>
+</html>
